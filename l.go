@@ -45,11 +45,11 @@ func init() {
 
 // Logger instance
 type Logger struct {
-	mu            sync.Mutex
-	Prefix        string
-	EnabledHeader bool
-	Depth         int
-	Level         level
+	mu           sync.Mutex
+	Prefix       string
+	DisabledInfo bool
+	Depth        int
+	Level        level
 }
 
 // Debug with date and file info
@@ -238,6 +238,11 @@ func Logf(format string, v ...interface{}) {
 	Default.Logf(format, v...)
 }
 
+// Printf from default instance
+func Printf(format string, v ...interface{}) {
+	Default.Printf(format, v...)
+}
+
 // Warnf from default instance
 func Warnf(format string, v ...interface{}) {
 	Default.Warnf(format, v...)
@@ -274,7 +279,7 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 		return
 	}
 
-	if enabledHeader {
+	if enabledHeader && !t.DisabledInfo {
 		header := header(funcName, file, line)
 		if header != "" {
 			out = out + header + " "
@@ -307,8 +312,8 @@ func Colorize(text string, c color) string {
 // New Logger
 func New() *Logger {
 	return &Logger{
-		EnabledHeader: true,
-		Depth:         3,
-		Level:         LevelDebug,
+		DisabledInfo: false,
+		Depth:        3,
+		Level:        LevelDebug,
 	}
 }

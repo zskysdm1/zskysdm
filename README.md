@@ -1,21 +1,29 @@
 ## Golang Pretty Logger
 
 ```go
-  package main
+ 	l.Log(10 + 5)
+	l.Print("Without datetime and code line")
 
-  import "github.com/happierall/l"
+	type People struct {
+		Name string
+	}
+	people := &People{"Name"}
+	l.Debug(people)
 
-  type People struct {
-    Name string
-  }
+	l.Warn("Function is depreceted")
+	l.Error("User is not defined")
 
-  func main() {
-    people := &People{"Name"}
+	l.Logf("%d ms", 10)
 
-    l.Log(10 + 5)
-    l.Print(10 + 5)
-    l.Print(people)
-  }
+	l.Printf("Request %s ms", l.Colorize("53", l.Green))
+
+	// Custom logger (useful for plugins)
+	var log = l.New()
+	log.Prefix = "[APP] "
+	log.Level = l.LevelDebug // default
+	log.DisabledInfo = true  // without date and code line
+
+	log.Debug("Message without date and line with prefix")
 ```
 Terminal output:
-![Output struct and int](assets/struct.png)
+![Output struct and int](assets/output.png)

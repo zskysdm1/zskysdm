@@ -41,7 +41,7 @@ const (
 	LightCyan   color = "\033[96m"
 	White       color = "\033[97m"
 	Black       color = "\033[30m"
-	endColor    color = "\033[0m" // "reset everything"
+	endColor    color = "\033[96m" // "reset everything"
 
 	maxLineWidth = 80
 )
