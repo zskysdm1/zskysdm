@@ -1,5 +1,7 @@
 ## Golang Pretty Logger
 
+![Usage](assets/screencast.png)
+
 ```go
  	l.Log(10 + 5)
 	l.Print("Without datetime and code line")
@@ -19,7 +21,7 @@
 
 	// Custom logger (useful for plugins)
 	var log = l.New()
-	log.Prefix = "[APP] "
+  log.Prefix = l.Colorize("[APP] ", l.Blue)
 	log.Level = l.LevelDebug // default
 	log.DisabledInfo = true  // without date and code line
 
