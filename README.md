@@ -1,6 +1,6 @@
 ## Golang Pretty Logger
 
-![Usage](assets/screencast.png)
+![Usage](assets/screencast.gif)
 
 ```go
  	l.Log(10 + 5)
