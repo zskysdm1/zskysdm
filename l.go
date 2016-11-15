@@ -300,6 +300,7 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 	out = out + output(args...)
 
 	if out != "" {
+		out += Colorize("", endColor)
 		fmt.Println(out)
 	}
 }
