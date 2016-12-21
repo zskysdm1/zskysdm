@@ -286,7 +286,6 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 	funcName, file, line, err := getCallerInfo(t.Depth)
 	if err != nil {
 		out += output(args...) // no name=value printing
-		return
 	}
 
 	if enabledHeader && !t.DisabledInfo {
@@ -299,7 +298,6 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 	names, err := argNames(file, line)
 	if err != nil {
 		out = out + output(args...)
-		return
 	}
 
 	// Convert the arguments to name=value strings.
