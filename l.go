@@ -48,6 +48,7 @@ type Logger struct {
 	mu           sync.Mutex
 	Prefix       string
 	DisabledInfo bool
+	Production   bool
 	Depth        int
 	Level        level
 }
@@ -306,14 +307,23 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 }
 
 // Colorize output
-func Colorize(text string, c color) string {
+func (t *Logger) Colorize(text string, c color) string {
+	if t.Production {
+		return text
+	}
 	return string(c) + text + string(endColor)
+}
+
+// Colorize output from default logger
+func Colorize(text string, c color) string {
+	return Default.Colorize(text, c)
 }
 
 // New Logger
 func New() *Logger {
 	return &Logger{
 		DisabledInfo: false,
+		Production:   false,
 		Depth:        3,
 		Level:        LevelDebug,
 	}

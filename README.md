@@ -21,7 +21,7 @@
 
 	// Custom logger (useful for plugins)
 	var log = l.New()
-  log.Prefix = l.Colorize("[APP] ", l.Blue)
+  log.Prefix = log.Colorize("[APP] ", l.Blue)
 	log.Level = l.LevelDebug // default
 	log.DisabledInfo = true  // without date and code line
 
@@ -29,3 +29,9 @@
 ```
 Terminal output:
 ![Output struct and int](assets/output.png)
+
+### Production mode
+Will disable colors
+```go
+	l.Default.Production = true
+```
