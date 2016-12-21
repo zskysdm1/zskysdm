@@ -24,17 +24,26 @@ const (
 )
 
 var levels = [...]string{
-	Colorize("CRIT ", LightRed),
-	Colorize("ERROR ", Red),
-	Colorize("WARNING ", Yellow),
-	Colorize("INFO ", LightBlue),
-	Colorize("DEBUB ", Gray),
+	"CRIT ",
+	"ERROR ",
+	"WARNING ",
+	"INFO ",
+	"DEBUB ",
+}
+
+var colors = [...]color{
+	LightRed,
+	Red,
+	Yellow,
+	LightBlue,
+	Gray,
 }
 
 // Level log
 type level int
 
 func (l level) String() string { return levels[l] }
+func (l level) Color() color   { return colors[l] }
 
 // Default instance (global)
 var Default = New()
@@ -263,7 +272,7 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 	out := ""
 
 	if lvl <= LevelWarning {
-		out += lvl.String()
+		out += t.Colorize(lvl.String(), lvl.Color())
 	}
 
 	if t.Prefix != "" {
