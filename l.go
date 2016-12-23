@@ -12,7 +12,7 @@ import (
 
 const (
 	// LevelCrit show error and os.Exit(1)
-	LevelCrit level = iota
+	LevelCrit Level = iota
 	// LevelError Error conditions(Ex: An application has exceeded its file storage limit and attempts to write are failing)
 	LevelError
 	// LevelWarning May indicate that an error will occur if action is not taken (Ex: A non-root file system has only 2GB remaining)
@@ -40,10 +40,10 @@ var colors = [...]color{
 }
 
 // Level log
-type level int
+type Level int
 
-func (l level) String() string { return levels[l] }
-func (l level) Color() color   { return colors[l] }
+func (l Level) String() string { return levels[l] }
+func (l Level) Color() color   { return colors[l] }
 
 // Default instance (global)
 var Default = New()
@@ -59,7 +59,9 @@ type Logger struct {
 	DisabledInfo bool
 	Production   bool
 	Depth        int
-	Level        level
+	Level        Level
+
+	handlers []func(string, Level)
 }
 
 // Debug with date and file info
@@ -268,7 +270,7 @@ func Critf(format string, v ...interface{}) {
 	Default.Critf(format, v...)
 }
 
-func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
+func (t *Logger) log(lvl Level, enabledHeader bool, v ...interface{}) {
 	out := ""
 
 	if lvl <= LevelWarning {
@@ -309,6 +311,9 @@ func (t *Logger) log(lvl level, enabledHeader bool, v ...interface{}) {
 
 	if out != "" {
 		out += Colorize("", endColor)
+
+		t.executeHandlers(out, lvl)
+
 		fmt.Println(out)
 	}
 }
