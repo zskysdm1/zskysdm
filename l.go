@@ -312,7 +312,7 @@ func (t *Logger) log(lvl Level, enabledHeader bool, v ...interface{}) {
 	if out != "" {
 		out += Colorize("", endColor)
 
-		t.executeHandlers(out, lvl)
+		go t.executeHandlers(out, lvl)
 
 		fmt.Println(out)
 	}

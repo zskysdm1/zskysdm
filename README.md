@@ -3,29 +3,29 @@
 ![Usage](assets/screencast.gif)
 
 ```go
- 	l.Log(10 + 5)
-	l.Print("Without datetime and code line")
+l.Log(10 + 5)
+l.Print("Without datetime and code line")
 
-	type People struct {
-		Name string
-	}
-	people := &People{"Name"}
-	l.Debug(people)
+type People struct {
+	Name string
+}
+people := &People{"Name"}
+l.Debug(people)
 
-	l.Warn("Function is depreceted")
-	l.Error("User is not defined")
+l.Warn("Function is depreceted")
+l.Error("User is not defined")
 
-	l.Logf("%d ms", 10)
+l.Logf("%d ms", 10)
 
-	l.Printf("Request %s ms", l.Colorize("53", l.Green))
+l.Printf("Request %s ms", l.Colorize("53", l.Green))
 
-	// Custom logger (useful for plugins)
-	var log = l.New()
-  log.Prefix = log.Colorize("[APP] ", l.Blue)
-	log.Level = l.LevelDebug // default
-	log.DisabledInfo = true  // without date and code line
+// Custom logger (useful for plugins)
+var log = l.New()
+log.Prefix = log.Colorize("[APP] ", l.Blue)
+log.Level = l.LevelDebug // default
+log.DisabledInfo = true  // without date and code line
 
-	log.Debug("Message without date and line with prefix")
+log.Debug("Message without date and line with prefix")
 ```
 Terminal output:
 ![Output struct and int](assets/output.png)
@@ -33,5 +33,12 @@ Terminal output:
 ### Production mode
 Will disable colors
 ```go
-	l.Default.Production = true
+l.Default.Production = true
+```
+
+### Subscribe on logs
+```go
+l.Default.Subscribe(func(text string, lvl l.Level) {
+	fmt.Println("New log", text, lvl.String())
+})
 ```
