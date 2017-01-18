@@ -1,6 +1,5 @@
 # Golang Pretty Logger
 ### Custom go logger for pretty print, log, debug, warn, error with colours and levels.
-Based on: [y0ssar1an/q](https://github.com/y0ssar1an/q)
 
 ![Usage](assets/screencast.gif)
 
@@ -56,6 +55,10 @@ l.Default.Subscribe(func(text string, lvl l.Level) {
 	fmt.Println("New log", text, lvl.String())
 })
 ```
+
+### Based on
+[y0ssar1an/q](https://github.com/y0ssar1an/q)
+
 ### License
 [MIT](http://opensource.org/licenses/MIT)
 
