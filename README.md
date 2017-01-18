@@ -1,6 +1,6 @@
 # Golang Pretty Logger
 ### Custom go logger for pretty print, log, debug, warn, error with colours and levels.
-#### Based on: [y0ssar1an/q](https://github.com/y0ssar1an/q)
+Based on: [y0ssar1an/q](https://github.com/y0ssar1an/q)
 
 ![Usage](assets/screencast.gif)
 
