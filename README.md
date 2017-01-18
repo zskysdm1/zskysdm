@@ -57,5 +57,5 @@ l.Default.Subscribe(func(text string, lvl l.Level) {
 })
 ```
 ### License
-![MIT](http://opensource.org/licenses/MIT)
+[MIT](http://opensource.org/licenses/MIT)
 
