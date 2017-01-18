@@ -56,3 +56,6 @@ l.Default.Subscribe(func(text string, lvl l.Level) {
 	fmt.Println("New log", text, lvl.String())
 })
 ```
+### License
+![MIT](http://opensource.org/licenses/MIT)
+
