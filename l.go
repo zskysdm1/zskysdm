@@ -24,7 +24,7 @@ var levels = [...]string{
 	"ERROR ",
 	"WARNING ",
 	"INFO ",
-	"DEBUB ",
+	"DEBUG ",
 }
 
 var colors = [...]color{
